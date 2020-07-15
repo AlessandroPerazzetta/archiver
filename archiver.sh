@@ -60,6 +60,8 @@ archiver.sh -l /path/to/isoimage.iso -r
 Example 3: Check MD5Hash (Run AFTER ripping CD to ISO)
 archiver.sh -l /path/to/isoimage.iso -m
 
+Example 4: Rip a CD to ISO with autoname from Volume ID, open close cdrom
+archiver.sh -c -e -r
 
 EOF
 }
