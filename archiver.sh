@@ -44,6 +44,7 @@ cat <<EOF
 usage: $0 options
 -h      Show this message
 -d      Report the Location of your Device
+-c      Automatically close
 -e      Automatically eject
 -m      Check your MD5Hash of CD against Image (Run AFTER making Image)
 -l      Location and name of ISO Image (/path/to/image.iso)
@@ -65,7 +66,7 @@ EOF
 
 
 
-while getopts "hdml:er" OPTION; do
+while getopts "hdml:cer" OPTION; do
   case $OPTION in
     h)
       usage
@@ -90,6 +91,10 @@ while getopts "hdml:er" OPTION; do
     r)
      #dd if=$device bs=$blocksize count=$blockcount of=$LFLAG status=progress
      #echo "Archiving Complete.  ISO Image located at:"$LFLAG
+
+      if test "$CFLAG" == true; then
+           eject -t && sleep 3
+      fi
       if test "$LFLAG" != ""; then
            dd if=$device bs=$blocksize count=$blockcount of=$LFLAG status=progress
            echo "Archiving Complete.  ISO Image located at:"$LFLAG
@@ -97,8 +102,8 @@ while getopts "hdml:er" OPTION; do
            dd if=$device bs=$blocksize count=$blockcount of=$isoname status=progress
            echo "Archiving Complete.  ISO Image located at:"$isoname
       fi
-      if test "$EFLAG"; then
-	   eject
+      if test "$EFLAG" == true; then
+           eject
       fi
       ;;
   esac
