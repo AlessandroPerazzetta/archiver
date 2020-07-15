@@ -26,10 +26,13 @@ if test "$volumeid" = ""; then
         exit
 else
    isoname="$volumeid.iso"
+   echo Check if $isoname exist ...
    if test -f "$isoname"; then
      now=$(date '+%Y%m%d-%H%M%S')
      echo File $isoname exist, create $volumeid-$now.iso
      isoname="$volumeid-$now.iso"
+   else
+     echo File $isoname not exist, create $isoname
    fi
 fi
 
