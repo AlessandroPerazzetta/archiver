@@ -80,7 +80,7 @@ while getopts "hdml:er" OPTION; do
      LFLAG="$OPTARG"
       ;;
     e)
-     EFLAG="$OPTARGS"
+     EFLAG="$OPTARG"
       ;;
     r)
      #dd if=$device bs=$blocksize count=$blockcount of=$LFLAG status=progress
