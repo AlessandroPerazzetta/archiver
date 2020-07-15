@@ -2,10 +2,7 @@
 
 ## Archiver.sh Script
 
-## Get blocksize
-#BLOCKSIZE=$(isosize -d 2048 /dev/sr0)
-
-
+## Get device
 device="/dev/"`cat /proc/sys/dev/cdrom/info |grep 'drive name'|cut -d':' -f 2|awk '{print $1}'`
 
 ## Get Block size of CD
